@@ -86,7 +86,7 @@
         <h1>Najveći izbor oglasa za posao na jednom mestu<span>.</span></h1>
       </div>
       <div class="row">
-        <p>2723 oglasa za posao, 1652 kompanije</p>
+        <p>1565 oglasa za posao, 1652 kompanije</p>
       </div>
       <div class="row">
         <form class="mt-5">
