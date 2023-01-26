@@ -10,6 +10,10 @@
     <?php
     include_once("./php/database.php");
     session_start();
+    if (!isset($_SESSION['ime']) || !isset($_SESSION['prezime']) || !isset($_SESSION['email']) || !isset($_SESSION['role'])) {
+        header("Location: index.php");
+        exit;
+    }
     ?>
 </head>
 
@@ -44,6 +48,11 @@
             case 1:
                 echo '<div class="alert alert-success" role="alert">';
                 echo "Doslo je do greske";
+                echo '</div>';
+                break;
+            case 2:
+                echo '<div class="alert alert-success" role="alert">';
+                echo "Vec ste uneli podatke o sebi";
                 echo '</div>';
                 break;
         }
@@ -104,31 +113,32 @@
 
                         <select class="form-control" id="exampleFormControlSelect1">
                             <option value="0">Izaberi grad</option>
-                            <option value="1">Beograd</option>
-                            <option value="2">Novi Sad</option>
-                            <option value="3">Nis</option>
-                            <option value="4">Kragujevac</option>
-                            <option value="5">Cacak</option>
+                            <?php
+                            // Connect to the database
+                            require_once './php/database.php';
+                            // Retrieve the data from the "poslovi" table
+                            $result = mysqli_query($mysqli, "SELECT DISTINCT grad FROM poslovi");
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                // Generate an option for each value retrieved
+                                echo "<option value='" . $row['grad'] . "'>" . $row['grad'] . "</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">
 
                         <select class="form-control1" id="exampleFormControlSelect2">
                             <option value="0">Oblast rada</option>
-                            <option value="1">IT</option>
-                            <option value="2">Trgovina</option>
-                            <option value="3">Masinstvo</option>
-                            <option value="4">Administracija</option>
-                            <option value="5">Ekonomija</option>
-                            <option value="6">Arhitektura</option>
-                            <option value="7">Bankarstvo</option>
-                            <option value="8">Biologija</option>
-                            <option value="9">Briga o lepoti</option>
-                            <option value="10">Dizajn</option>
-                            <option value="11">Farmacija</option>
-                            <option value="12">Finansije</option>
-                            <option value="13">Hemioja</option>
-                            <option value="14">Drugo</option>
+                            <?php
+                            // Connect to the database
+                            require_once './php/database.php';
+                            // Retrieve the data from the "poslovi" table
+                            $result = mysqli_query($mysqli, "SELECT DISTINCT oblast_rada FROM poslovi");
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                // Generate an option for each value retrieved
+                                echo "<option value='" . $row['oblast_rada'] . "'>" . $row['oblast_rada'] . "</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">

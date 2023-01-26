@@ -96,60 +96,7 @@
     <section class='top-page'>
         <div class="container">
             <div class="row">
-                <h1>Najveći izbor oglasa za posao na jednom mestu<span>.</span></h1>
-            </div>
-            <div class="row">
-                <p>2723 oglasa za posao, 1652 kompanije</p>
-            </div>
-            <div class="row">
-                <form class="mt-5">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Pretraga" title="Pretražite poslove po poziciji, poslodavcu, ili ključnoj reči">
-                    </div>
-                    <div class="form-group">
-
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option value="0">Izaberi grad</option>
-                            <?php
-                            // Connect to the database
-                            require_once './php/database.php';
-                            // Retrieve the data from the "poslovi" table
-                            $result = mysqli_query($mysqli, "SELECT DISTINCT mesto_rodjenja FROM radnici");
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                // Generate an option for each value retrieved
-                                echo "<option value='" . $row['mesto_rodjenja'] . "'>" . $row['mesto_rodjenja'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-
-                        <select class="form-control1" id="exampleFormControlSelect2">
-                            <option value="0">Oblast rada</option>
-                            <?php
-                            // Connect to the database
-                            require_once './php/database.php';
-                            // Retrieve the data from the "poslovi" table
-                            $result = mysqli_query($mysqli, "SELECT DISTINCT struka FROM radnici");
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                // Generate an option for each value retrieved
-                                echo "<option value='" . $row['struka'] . "'>" . $row['struka'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary mb-2 fa fa-search fa-3x " style="margin-top:7px; background-color:#E2016A; background-clip:  padding:0px; box-shadow: 0 0 0 4px white;"></button>
-                    </div>
-
-                </form>
-            </div>
-            <div class="row">
-                <p class="PopularCity">Najnoviji oglasi</p>
-                <p class="city">Danas</p>
-                <p class="city">poslednja 2 dana</p>
-                <p class="city">poslednja 3 dana</p>
-                <p class="city">poslednjih 7 dana</p>
+                <h1>Vasi oglasi<span>.</span></h1>
             </div>
         </div>
     </section>
@@ -157,15 +104,35 @@
         <div class="container">
             <?php
             require_once './php/database.php';
-            $radnik = getAllData("radnici");
-            foreach ($radnik as $radnici) {
-                echo "<div class='card'>";
-                echo "<div class='card-header'><img src='./img/placeholder.png' alt='...' class='rounded-circle'>" . " <strong><span style='font-size: 20px'>" . $radnici['ime_radnika'] . " " . $radnici['prezime_radnika'] . "</span></strong></div><div class='card-body'>";
-                echo "<h5 class='card-title'>" . $radnici['datum_rodjenja'] . ", " . $radnici['mesto_rodjenja'] . "</h5>";
-                echo "<p class='card-text'>CV: <a href='./php/download.php?id=" . $radnici['id'] . "'>Download CV ovog korisnika</a></p>";
-                echo "<p class='card-text'>" . $radnici['struka'] . "</p>";
-                echo "<p class='card-text'>" . $radnici['email_radnika'] . "</p>";
-                echo "<a href='./php/notifyk.php?id=" . $radnici['id'] . "' class='btn btn-primary'>Kontaktiraj</a></div></div><br>";
+
+            $match = false;
+
+            if (isset($_SESSION['email'])) {
+                $posao = getAllData("poslovi");
+                foreach ($posao as $poslovi) {
+                    if ($_SESSION['email'] == $poslovi['email_poslodavca']) {
+                        $match = true;
+                        break;
+                    }
+                }
+            }
+            if ($match) {
+                if (isset($_SESSION['email'])) {
+                    $posao = getAllData("poslovi");
+                    foreach ($posao as $poslovi) {
+                        if ($_SESSION['email'] == $poslovi['email_poslodavca']) {
+                            echo "<div class='card'>";
+                            echo "<div class='card-header'>" . $poslovi['poslodavac'] . "</div><div class='card-body'>";
+                            echo "<h5 class='card-title'>" . $poslovi['ime_posla'] . ", " . $poslovi['grad'] . "</h5>";
+                            echo "<p class='card-text'>" . $poslovi['opis'] . "</p>";
+                            echo "<p class='card-text'>" . $poslovi['email_poslodavca'] . "</p>";
+                            echo "<p class='card-text'>" . $poslovi['vreme_objave'] . "</p>";;
+                            echo "<a href='./php/deleteoglas.php?id=" . $poslovi['id'] . "' class='btn btn-primary' style='margin-right: 1rem;'>Obrisi</a><a href='./php/modifyoglas.php?id=" . $poslovi['id'] . "' class='btn btn-primary' style='margin-right: 1rem;'>Izmeni</a></div></div><br>";
+                        }
+                    }
+                }
+            } else {
+                echo "<div class='row'><h1>Nemate postavljenih oglasa<span>!</span></h1></div>";
             }
             ?>
 

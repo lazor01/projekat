@@ -20,7 +20,7 @@
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
       // Session data matches data in the 'radnici' table, redirect to different PHP file
-      header("Location: edit.php");
+      header("Location: indexlog.php?error=2");
       exit();
     }
   }

@@ -3,14 +3,15 @@
 
 <head>
   <title>InfoStud</title>
-  <link rel="stylesheet" href="./css/style.css">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
-
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
+<body id="custom-background">
+
   <?php
   if (isset($_REQUEST["success"])) {
     switch ($_REQUEST["success"]) {
@@ -93,31 +94,32 @@
 
             <select class="form-control" id="exampleFormControlSelect1">
               <option value="0">Izaberi grad</option>
-              <option value="1">Beograd</option>
-              <option value="2">Novi Sad</option>
-              <option value="3">Nis</option>
-              <option value="4">Kragujevac</option>
-              <option value="5">Cacak</option>
+              <?php
+              // Connect to the database
+              require_once './php/database.php';
+              // Retrieve the data from the "poslovi" table
+              $result = mysqli_query($mysqli, "SELECT DISTINCT grad FROM poslovi");
+              while ($row = mysqli_fetch_assoc($result)) {
+                // Generate an option for each value retrieved
+                echo "<option value='" . $row['grad'] . "'>" . $row['grad'] . "</option>";
+              }
+              ?>
             </select>
           </div>
           <div class="form-group">
 
             <select class="form-control1" id="exampleFormControlSelect2">
               <option value="0">Oblast rada</option>
-              <option value="1">IT</option>
-              <option value="2">Trgovina</option>
-              <option value="3">Masinstvo</option>
-              <option value="4">Administracija</option>
-              <option value="5">Ekonomija</option>
-              <option value="6">Arhitektura</option>
-              <option value="7">Bankarstvo</option>
-              <option value="8">Biologija</option>
-              <option value="9">Briga o lepoti</option>
-              <option value="10">Dizajn</option>
-              <option value="11">Farmacija</option>
-              <option value="12">Finansije</option>
-              <option value="13">Hemioja</option>
-              <option value="14">Drugo</option>
+              <?php
+              // Connect to the database
+              require_once './php/database.php';
+              // Retrieve the data from the "poslovi" table
+              $result = mysqli_query($mysqli, "SELECT DISTINCT oblast_rada FROM poslovi");
+              while ($row = mysqli_fetch_assoc($result)) {
+                // Generate an option for each value retrieved
+                echo "<option value='" . $row['oblast_rada'] . "'>" . $row['oblast_rada'] . "</option>";
+              }
+              ?>
             </select>
           </div>
           <div class="form-group">
