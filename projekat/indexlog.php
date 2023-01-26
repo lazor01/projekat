@@ -32,6 +32,11 @@
                 echo "Uspesno ste se prijavili za posao";
                 echo '</div>';
                 break;
+            case 4:
+                echo '<div class="alert alert-success" role="alert">';
+                echo "Uspesno ste dodali informacije";
+                echo '</div>';
+                break;
         }
     }
     if (isset($_REQUEST["error"])) {
@@ -53,37 +58,33 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction(event)" style="color: #053488" ;" myFunction(event)">Poslovi <span style="color: #E2016A;">▾</span></button>
+                        <button class="dropbtn" onmouseover="myFunction(event)" style="color: #053488" ;>Poslovi <span style="color: #E2016A;"">▾</span></button>
 
-                        <div id="myDropdown" class="dropdown-content">
-                            <a href="#" style="color: #053488;">Pretraga poslova</a>
-                            <a href="#" style="color: #053488;">Poslovi na email</a>
-                            <a href="#" style="color: #053488;">Arhiva poslova</a>
-                        </div>
+                        <div id=" myDropdown" class="dropdown-content">
+                                <a href="#" style="color: #053488;">Arhiva poslova</a>
+                                <a href="#" style="color: #053488;">Oceni poslodavce</a>
                     </div>
-                </li>
-                <li class="nav-item boja">
-                    <a class="nav-link" id="poslodavci" href="#" style="color: #053488;">Upoznajte poslodavce</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" id="pretraga" href="#" style="color: #053488;">Pretraga</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="za-poslodavce" style="color: #E2016A;"><i class="fas fa-user"></i> <?php echo $_SESSION["role"] ?>, <?php echo $_SESSION["ime"] ?> <?php echo $_SESSION["prezime"] ?></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="za-poslodavce" href="./php/logout.php" style="color: #E2016A;">Odjavite se</a>
-                </li>
+        </div>
+        </li>
+        <li class="nav-item boja">
+            <a class="nav-link" id="poslodavci" href="#" style="color: #053488;">Upoznajte poslodavce</a>
+        </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="profile.php" id="za-poslodavce" style="color: #E2016A;"><i class="fas fa-user"></i> <?php echo $_SESSION["role"] ?>, <?php echo $_SESSION["ime"] ?> <?php echo $_SESSION["prezime"] ?></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="za-poslodavce" href="./php/logout.php" style="color: #E2016A;">Odjavite se</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" id="za-poslodavce" href="#" style="color: #053488;">Za korisnike</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="notifications" href="#" style="color: #053488;"><i class="fas fa-bell fa-lg"></i></a>
-                </li>
-            </ul>
+            <li class="nav-item">
+                <a class="nav-link" id="za-poslodavce" href="#" style="color: #053488;">Za korisnike</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="notifications" href="#" style="color: #053488;"><i class="fas fa-bell fa-lg"></i></a>
+            </li>
+        </ul>
         </div>
     </nav>
     <section class='top-page'>

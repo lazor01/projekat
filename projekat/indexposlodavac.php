@@ -56,9 +56,8 @@
                         <button class="dropbtn" onclick="myFunction(event)" style="color: #053488" ;" myFunction(event)">Poslovi <span style="color: #E2016A;">▾</span></button>
 
                         <div id="myDropdown" class="dropdown-content">
-                            <a href="#" style="color: #053488;">Pretraga radnika</a>
-                            <a href="#" style="color: #053488;">Poslovi na email</a>
                             <a href="#" style="color: #053488;">Arhiva poslova</a>
+                            <a href="#" style="color: #053488;">Oceni poslodavce</a>
                         </div>
                     </div>
                 </li>
@@ -68,10 +67,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" id="pretraga" href="#" style="color: #053488;">Pretraga</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="za-poslodavce" style="color: #E2016A;"><i class="fas fa-user-tie"></i> <?php echo $_SESSION["role"] ?>, <?php echo $_SESSION["ime"] ?> <?php echo $_SESSION["prezime"] ?></a>
+                    <a class="nav-link" href="profile.php" id="za-poslodavce" style="color: #E2016A;"><i class="fas fa-user-tie"></i> <?php echo $_SESSION["role"] ?>, <?php echo $_SESSION["ime"] ?> <?php echo $_SESSION["prezime"] ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="za-poslodavce" href="./php/logout.php" style="color: #E2016A;">Odjavite se</a>
@@ -154,11 +150,12 @@
                 echo "<div class='card'>";
                 echo "<div class='card-header'><img src='./img/placeholder.png' alt='...' class='rounded-circle'>" . " <strong><span style='font-size: 20px'>" . $radnici['ime_radnika'] . " " . $radnici['prezime_radnika'] . "</span></strong></div><div class='card-body'>";
                 echo "<h5 class='card-title'>" . $radnici['datum_rodjenja'] . ", " . $radnici['mesto_rodjenja'] . "</h5>";
-                echo "<p class='card-text'>" . $radnici['opis_radnika'] . "</p><br>";
+                echo "<p class='card-text'>CV: <a href='./php/download.php?id=" . $radnici['id'] . "'>Download CV ovog korisnika</a></p><br>";
                 echo "<p class='card-text'>" . $radnici['email_radnika'] . "</p>";
                 echo "<a href='./php/notifyk.php?id=" . $radnici['id'] . "' class='btn btn-primary'>Kontaktiraj</a></div></div><br>";
             }
             ?>
+
         </div>
     </section>
     <section id="footer">

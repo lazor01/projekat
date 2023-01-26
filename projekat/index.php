@@ -50,23 +50,19 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction(event)" style="color: #053488" ;>Poslovi <span style="color: #E2016A;">▾</span></button>
+            <button class="dropbtn" onmouseover="myFunction(event)" style="color: #053488" ;>Poslovi <span style="color: #E2016A;">▾</span></button>
 
             <div id="myDropdown" class="dropdown-content">
-              <a href="#" style="color: #053488;">Pretraga poslova</a>
-              <a href="#" style="color: #053488;">Poslovi na email</a>
               <a href="#" style="color: #053488;">Arhiva poslova</a>
+              <a href="#" style="color: #053488;">Oceni poslodavce</a>
             </div>
           </div>
         </li>
         <li class="nav-item boja">
-          <a class="nav-link" id="poslodavci" href="#" style="color: #053488;">Upoznajte poslodavce</a>
+          <a class="nav-link" id="poslodavci" href="upoznajteposlodavce.php" style="color: #053488;">Upoznajte poslodavce</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" id="pretraga" href="#" style="color: #053488;">Pretraga</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" id="za-poslodavce" href="login_form.php" style="color: #E2016A;">Prijavite se</a>
         </li>
@@ -163,7 +159,7 @@
       <div class="row">
         <ul>
           <li>
-            <a href="#"><i class="fab fa-twitter-square share"></i></a>
+            <a href="twitter.com"><i class="fab fa-twitter-square share"></i></a>
 
           </li>
         </ul>
@@ -171,7 +167,7 @@
       <div class="row">
         <ul>
           <li>
-            <a href="#"><i class="fab fa-instagram-square share"></i></a>
+            <a href="instagram.com"><i class="fab fa-instagram-square share"></i></a>
 
           </li>
         </ul>
@@ -179,7 +175,7 @@
       <div class="row">
         <ul>
           <li>
-            <a href="#"><i class="fab fa-facebook-square share"></i></a>
+            <a href="facebook.com"><i class="fab fa-facebook-square share"></i></a>
           </li>
 
         </ul>

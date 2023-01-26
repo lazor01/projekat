@@ -11,43 +11,9 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="index.php"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction(event)" style="color: #053488" ;>Poslovi <span style="color: #E2016A;">▾</span></button>
-
-                        <div id="myDropdown" class="dropdown-content">
-                            <a href="#" style="color: #053488;">Pretraga poslova</a>
-                            <a href="#" style="color: #053488;">Poslovi na email</a>
-                            <a href="#" style="color: #053488;">Arhiva poslova</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item boja">
-                    <a class="nav-link" id="poslodavci" href="#" style="color: #053488;">Upoznajte poslodavce</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" id="pretraga" href="#" style="color: #053488;">Pretraga</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="za-poslodavce" href="login_form.php" style="color: #E2016A;">Prijavite se</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" id="za-poslodavce" href="#" style="color: #053488;">Za poslodavce</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="notifications" href="#" style="color: #053488;"><i class="fas fa-bell fa-lg"></i></a>
-                </li>
-            </ul>
-        </div>
     </nav>
     <div class="kontejner">
         <div class="form-container">

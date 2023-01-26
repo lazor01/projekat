@@ -23,4 +23,17 @@ function getAllData($table)
     }
 }
 
+function getData($table, $col, $value)
+{
+    global $mysqli;
+    $stmt = $mysqli->prepare("SELECT * FROM $table WHERE $col = ?");
+    $stmt->bind_param("s", $value);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+    $stmt->close();
+    return $data;
+}
+
+
 $con = $mysqli;
