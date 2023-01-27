@@ -53,6 +53,11 @@
                 echo "Uspesno ste obrisali oglas";
                 echo '</div>';
                 break;
+            case 7:
+                echo '<div class="alert alert-success" role="alert">';
+                echo "Uspesno ste odbili prijavu za vas oglas";
+                echo '</div>';
+                break;
         }
     }
     if (isset($_REQUEST["error"])) {
@@ -152,7 +157,7 @@
                                             echo "<p class='card-text'>CV: <a href='./php/download.php?id=" . $radnici['id'] . "'>Download CV ovog korisnika</a></p>";
                                             echo "<p class='card-text'>" . $radnici['struka'] . "</p>";
                                             echo "<p class='card-text'>" . $radnici['email_radnika'] . "</p>";
-                                            echo "<a href='./php/notifyk.php?id=" . $radnici['id'] . "' class='btn btn-primary'>Kontaktiraj</a></div></div><br>";
+                                            echo "<a href='./php/notifyk.php?id=" . $radnici['id'] . "' class='btn btn-primary' style='margin-right: 1rem;'>Kontaktiraj</a><a href='./php/notifydelete.php?id=" . $notifikacije['id'] . "' class='btn btn-primary'>Obrisi prijavu</a></div></div><br>";
                                         }
                                     }
                                 }
