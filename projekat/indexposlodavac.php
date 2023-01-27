@@ -139,7 +139,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary mb-2 fa fa-search fa-3x " style="margin-top:7px; background-color:#E2016A; background-clip:  padding:0px; box-shadow: 0 0 0 4px white;"></button>
+                        <button type="submit" class="btn btn-primary mb-2 fa fa-search fa-3x " style="margin-top:7px; background-color:#E2016A; background-clip:  padding: 0px; box-shadow: 0 0 0 4px white;"></button>
                     </div>
 
                 </form>

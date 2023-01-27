@@ -43,6 +43,16 @@
                 echo "Uspesno ste kreirali oglas";
                 echo '</div>';
                 break;
+            case 5:
+                echo '<div class="alert alert-success" role="alert">';
+                echo "Uspesno ste izmenili oglas";
+                echo '</div>';
+                break;
+            case 6:
+                echo '<div class="alert alert-success" role="alert">';
+                echo "Uspesno ste obrisali oglas";
+                echo '</div>';
+                break;
         }
     }
     if (isset($_REQUEST["error"])) {
@@ -56,7 +66,7 @@
     }
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a>
+        <a class="navbar-brand" href="indexposlodavac.php"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -119,15 +129,35 @@
             if ($match) {
                 if (isset($_SESSION['email'])) {
                     $posao = getAllData("poslovi");
+                    $notifikacija = getAllData("notifikacije");
+                    $radnik = getAllData("radnici");
                     foreach ($posao as $poslovi) {
                         if ($_SESSION['email'] == $poslovi['email_poslodavca']) {
                             echo "<div class='card'>";
                             echo "<div class='card-header'>" . $poslovi['poslodavac'] . "</div><div class='card-body'>";
-                            echo "<h5 class='card-title'>" . $poslovi['ime_posla'] . ", " . $poslovi['grad'] . "</h5>";
-                            echo "<p class='card-text'>" . $poslovi['opis'] . "</p>";
+                            echo "<h4 class='card-title'>" . $poslovi['ime_posla'] . ", " . $poslovi['grad'] . "</h4><br>";
+                            $opis = "- " . str_replace("<br />", "<br />- ", nl2br($poslovi['opis']));
+                            echo "<p class='card-text'>" . $opis . "</p>";
                             echo "<p class='card-text'>" . $poslovi['email_poslodavca'] . "</p>";
-                            echo "<p class='card-text'>" . $poslovi['vreme_objave'] . "</p>";;
-                            echo "<a href='./php/deleteoglas.php?id=" . $poslovi['id'] . "' class='btn btn-primary' style='margin-right: 1rem;'>Obrisi</a><a href='./php/modifyoglas.php?id=" . $poslovi['id'] . "' class='btn btn-primary' style='margin-right: 1rem;'>Izmeni</a></div></div><br>";
+                            echo "<p class='card-text'>" . $poslovi['vreme_objave'] . "</p>";
+                            echo "<a href='./php/deleteoglas.php?id=" . $poslovi['id'] . "' class='btn btn-primary' style='margin-right: 1rem;'>Obrisi</a><a href='./modifyoglas.php?id=" . $poslovi['id'] . "' class='btn btn-primary' style='margin-right: 1rem;'>Izmeni</a>";
+                            echo "<div><br><h5>Prijave za oglas</h5>";
+                            foreach ($notifikacija as $notifikacije) {
+                                if ($_SESSION['email'] == $notifikacije['za_email'] && $notifikacije['prijava_id'] == $poslovi['id']) {
+                                    foreach ($radnik as $radnici) {
+                                        if ($notifikacije['od_email'] == $radnici['email_radnika']) {
+                                            echo "<div class='card'>";
+                                            echo "<div class='card-header'><img src='./img/placeholder.png' alt='...' class='rounded-circle'>" . " <strong><span style='font-size: 20px'>" . $radnici['ime_radnika'] . " " . $radnici['prezime_radnika'] . "</span></strong></div><div class='card-body'>";
+                                            echo "<h5 class='card-title'>" . $radnici['datum_rodjenja'] . ", " . $radnici['mesto_rodjenja'] . "</h5>";
+                                            echo "<p class='card-text'>CV: <a href='./php/download.php?id=" . $radnici['id'] . "'>Download CV ovog korisnika</a></p>";
+                                            echo "<p class='card-text'>" . $radnici['struka'] . "</p>";
+                                            echo "<p class='card-text'>" . $radnici['email_radnika'] . "</p>";
+                                            echo "<a href='./php/notifyk.php?id=" . $radnici['id'] . "' class='btn btn-primary'>Kontaktiraj</a></div></div><br>";
+                                        }
+                                    }
+                                }
+                            }
+                            echo "</div></div></div><br>";
                         }
                     }
                 }

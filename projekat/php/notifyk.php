@@ -22,13 +22,14 @@ $za_email = $poslovi['email_radnika'];
 // Get the data from the session
 $od_email = $_SESSION['email'];
 $opis = "Poslodavac salje ponudu";
+$prijava_id = $id;
 
 // Prepare the SQL statement
-$sql = "INSERT INTO notifikacije (od_email, za_email, opis) VALUES (?, ?, ?)";
+$sql = "INSERT INTO notifikacije (od_email, za_email, opis, prijava_id) VALUES (?, ?, ?, ?)";
 $stmt = $con->prepare($sql);
 
 // Bind the data to the statement
-$stmt->bind_param("sss", $od_email, $za_email, $opis);
+$stmt->bind_param("sssi", $od_email, $za_email, $opis, $prijava_id);
 
 // Execute the statement
 if ($stmt->execute()) {

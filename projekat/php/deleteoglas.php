@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($mysqli, $query);
 
     if ($result) {
-        header("Location: ../oglasi.php");
+        header("Location: ../oglasi.php?success=6");
     } else {
         echo "Error deleting record: " . mysqli_error($mysqli);
     }

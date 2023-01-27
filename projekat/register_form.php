@@ -11,7 +11,7 @@
 <body>
     <div class="form-container">
         <h1>Registracija</h1>
-        <form action="php/addoglas.php" method="post" enctype="multipart/form-data">
+        <form action="php/register.php" method="post" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="col">
                     <label for="exampleFormControlInput1">Ime</label>
