@@ -12,7 +12,7 @@ $password = $_REQUEST["password"];
 $passwordre = $_REQUEST["passwordre"];
 
 if ($password != $passwordre) {
-    die(header("Location: ../register.php?error=1"));
+    die(header("Location: ../register_form.php?error=1"));
 }
 
 
@@ -20,7 +20,7 @@ $query = $mysqli->query("SELECT * FROM user WHERE email='$email';");
 $num = $query->num_rows;
 
 if ($num > 0) {
-    die(header("Location: ../register.php?error=2"));
+    die(header("Location: ../register_form.php?error=2"));
 }
 
 

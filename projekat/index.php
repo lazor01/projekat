@@ -11,6 +11,48 @@
 </head>
 
 <body id="custom-background">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; top: 0; width: 100%; z-index:3;">
+    <a class="navbar-brand" href="index.php"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" id="za-poslodavce" href="login_form.php" style="color: #E2016A;">Prijavite se</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" id="za-poslodavce" href="#" style="color: #053488;">Za poslodavce</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="notifications" href="#" style="color: #053488;"><i class="fas fa-bell fa-lg"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <section class='top-page' style="background-image: url('./img/background.jpg'); background-size:cover;">
+    <div class="container">
+      <div class="row">
+        <h1>Najveći izbor oglasa za posao na jednom mestu<span>.</span></h1>
+      </div>
+      <div class="row">
+        <p>1565 oglasa za posao, 1652 kompanije</p>
+      </div>
+      <div class="row">
+        <form class="mt-5" action="" method="post">
+          <div class="input-group mb-3 d-flex justify-content-center">
+            <input type="text" class="form-control" name="criterium" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">Button</button>
+            </div>
+          </div>
+          </select>
+      </div>
+
+      </form>
+    </div>
+  </section>
 
   <?php
   if (isset($_REQUEST["success"])) {
@@ -42,145 +84,51 @@
     }
   }
   ?>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <div class="dropdown">
-            <button class="dropbtn" onmouseover="myFunction(event)" style="color: #053488" ;>Poslovi <span style="color: #E2016A;">▾</span></button>
-
-            <div id="myDropdown" class="dropdown-content">
-              <a href="#" style="color: #053488;">Arhiva poslova</a>
-              <a href="#" style="color: #053488;">Oceni poslodavce</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item boja">
-          <a class="nav-link" id="poslodavci" href="upoznajteposlodavce.php" style="color: #053488;">Upoznajte poslodavce</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" id="za-poslodavce" href="login_form.php" style="color: #E2016A;">Prijavite se</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" id="za-poslodavce" href="#" style="color: #053488;">Za poslodavce</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="notifications" href="#" style="color: #053488;"><i class="fas fa-bell fa-lg"></i></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <section class='top-page'>
-    <div class="container">
-      <div class="row">
-        <h1>Najveći izbor oglasa za posao na jednom mestu<span>.</span></h1>
-      </div>
-      <div class="row">
-        <p>1565 oglasa za posao, 1652 kompanije</p>
-      </div>
-      <div class="row">
-        <form class="mt-5">
-          <div class="form-group">
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Pozicija, poslodavac, ili ključna reč" title="Pretražite poslove po poziciji, poslodavcu, ili ključnoj reči">
-          </div>
-          <div class="form-group">
-
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option value="0">Izaberi grad</option>
-              <?php
-              // Connect to the database
-              require_once './php/database.php';
-              // Retrieve the data from the "poslovi" table
-              $result = mysqli_query($mysqli, "SELECT DISTINCT grad FROM poslovi");
-              while ($row = mysqli_fetch_assoc($result)) {
-                // Generate an option for each value retrieved
-                echo "<option value='" . $row['grad'] . "'>" . $row['grad'] . "</option>";
-              }
-              ?>
-            </select>
-          </div>
-          <div class="form-group">
-
-            <select class="form-control1" id="exampleFormControlSelect2">
-              <option value="0">Oblast rada</option>
-              <?php
-              // Connect to the database
-              require_once './php/database.php';
-              // Retrieve the data from the "poslovi" table
-              $result = mysqli_query($mysqli, "SELECT DISTINCT oblast_rada FROM poslovi");
-              while ($row = mysqli_fetch_assoc($result)) {
-                // Generate an option for each value retrieved
-                echo "<option value='" . $row['oblast_rada'] . "'>" . $row['oblast_rada'] . "</option>";
-              }
-              ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary mb-2 fa fa-search fa-3x " style="margin-top:7px; background-color:#E2016A; background-clip:  padding:0px; box-shadow: 0 0 0 4px white;"></button>
-          </div>
-
-        </form>
-      </div>
-      <div class="row">
-        <p class="PopularCity">Najnoviji oglasi</p>
-        <p class="city">Danas</p>
-        <p class="city">poslednja 2 dana</p>
-        <p class="city">poslednja 3 dana</p>
-        <p class="city">poslednjih 7 dana</p>
-      </div>
-    </div>
-  </section>
   <section id="main">
     <div class="container">
-      <h1>Istaknuti poslodavci</h1>
+      <h1 class="nav-link" id="za-poslodavce" style="color: #053488;"><span style="color: #E2016A;">I</span>staknuti <span style="color: #E2016A;">P</span>oslodavci<span style="color: #E2016A;">.</span></h1>
+
       <?php
       require_once './php/database.php';
-      $posao = getAllData("poslovi");
+      $input = isset($_POST['criterium']) ? $_POST['criterium'] : "";
+      $query = "SELECT * FROM poslovi WHERE CONCAT(poslodavac, ime_posla, grad,oblast_rada, opis, email_poslodavca) LIKE '%$input%'";
+      $posao = getAllDataByQuery($query);
       foreach ($posao as $poslovi) {
         echo "<div class='card'>";
-        echo "<div class='card-header'>" . $poslovi['poslodavac'] . "</div><div class='card-body'>";
+        echo "<div class='card-header white-text'>" . $poslovi['poslodavac'] . "</div><div class='card-body'>";
         echo "<h5 class='card-title'>" . $poslovi['ime_posla'] . ", " . $poslovi['grad'] . "</h5>";
         echo "<p class='card-text'>" . $poslovi['opis'] . "</p>";
         echo "<p class='card-text'>" . $poslovi['email_poslodavca'] . "</p>";
         echo "<p class='card-text'>" . $poslovi['vreme_objave'] . "</p>";;
-        echo "<a href='./php/notifyp.php' class='btn btn-primary'>Prijavi se</a></div>
+        echo "<a href='./php/notifyp.php' class='btn btn-outline-dark'>Prijavi se</a></div>
         </div><br>";;
       }
       ?>
     </div>
   </section>
-  <section id="footer">
+  <section id="footer" style="background-image: url('./img/background.jpg'); color:white;">
     <div class="container">
       <div class="row">
-        <ul>
-          <li>
-            <a href="twitter.com"><i class="fab fa-twitter-square share"></i></a>
-
-          </li>
-        </ul>
-      </div>
-      <div class="row">
-        <ul>
-          <li>
-            <a href="instagram.com"><i class="fab fa-instagram-square share"></i></a>
-
-          </li>
-        </ul>
-      </div>
-      <div class="row">
-        <ul>
-          <li>
-            <a href="facebook.com"><i class="fab fa-facebook-square share"></i></a>
-          </li>
-
-        </ul>
+        <div class="col-sm-12 col-md-4 color:white">
+          <h3>About Us</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna euismod malesuada faucibus, augue magna tincidunt leo, id viverra magna erat at risus.</p>
+        </div>
+        <div class="col-sm-12 col-md-4 color:white">
+          <h3>Contact Us</h3>
+          <ul>
+            <li>Phone: 555-555-5555</li>
+            <li>Email: info@example.com</li>
+            <li>Address: 123 Main St, Anytown USA</li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <h3>Follow Us</h3>
+          <ul class="social-icons">
+            <li><a href="twitter.com"><i class="fab fa-twitter-square color:white"></i></a></li>
+            <li><a href="instagram.com"><i class="fab fa-instagram-square color:white"></i></a></li>
+            <li><a href="facebook.com"><i class="fab fa-facebook-square color:white"></i></a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>

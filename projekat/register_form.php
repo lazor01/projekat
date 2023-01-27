@@ -8,7 +8,7 @@
 
 </head>
 
-<body>
+<body style="background-image: url('./img/background.jpg'); background-size:cover;">
     <div class="form-container">
         <h1>Registracija</h1>
         <form action="php/register.php" method="post" enctype="multipart/form-data">
@@ -48,7 +48,7 @@
             </div>
             <br>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-dark">Submit</button>
         </form>
         <?php
         if (isset($_REQUEST["error"])) {

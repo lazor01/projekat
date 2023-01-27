@@ -9,6 +9,16 @@
 </head>
 
 <body>
+    <?php
+    if (isset($_REQUEST["error"])) {
+        switch ($_REQUEST["error"]) {
+            case 1:
+                echo '<div class="alert alert-danger" role="alert">';
+                echo "Sifre se ne poklapaju";
+                echo '</div>';
+                break;
+        }
+    } ?>
     <div class="form-container">
         <h1>Registracija</h1>
         <form action="./php/addoglas.php" method="post" enctype="multipart/form-data">

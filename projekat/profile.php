@@ -29,7 +29,7 @@
   ?>
 </head>
 
-<body>
+<body style="background-image: url('./img/background.jpg'); background-size:cover;">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="index.php"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,19 +42,19 @@
       <form action="./php/add.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="cv">Upload your CV (PDF only):</label>
-          <input type="file" name="cv" accept="application/pdf">
+          <input type="file" name="cv" accept="application/pdf" class="form-control-file" id="exampleFormControlFile1">
         </div>
         <div class="form-group">
           <label for="datum_rodjenja">Datum rodjenja:</label>
-          <input type="date" name="datum_rodjenja" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
+          <input type="date" name="datum_rodjenja" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control-file" id="exampleFormControlFile1" required>
         </div>
         <div class="form-group">
           <label for="mesto_rodjenja">Mesto rodjenja:</label>
-          <input type="text" name="mesto_rodjenja" required>
+          <input type="text" name="mesto_rodjenja" class="form-control-file" id="exampleFormControlFile1" required>
         </div>
         <div class="form-group">
           <label for="struka">Struka:</label>
-          <input type="text" name="struka" required>
+          <input type="text" name="struka" class="form-control-file" id="exampleFormControlFile1" required>
         </div>
         <input type="submit" value="Submit">
       </form>

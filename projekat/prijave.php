@@ -10,36 +10,38 @@
     <?php
     include_once("./php/database.php");
     session_start();
+
     if (!isset($_SESSION['ime']) || !isset($_SESSION['prezime']) || !isset($_SESSION['email']) || !isset($_SESSION['role'])) {
         header("Location: index.php");
         exit;
     }
     ?>
+
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; top: 0; width: 100%; z-index:3;">
-        <a class="navbar-brand" href="index.php"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="indexlog.php"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+
                 <li class="nav-item boja">
-                    <a class="nav-link" id="poslodavci" href="prijave.php" style="color: #053488;">Pregledaj prijave</a>
+                    <a class="nav-link" id="poslodavci" href="./prijave.php" style="color: #053488;">Pregledaj svoje oglase</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.php" id="za-poslodavce" style="color: #E2016A;"><i class="fas fa-user"></i> <?php echo $_SESSION["role"] ?>, <?php echo $_SESSION["ime"] ?> <?php echo $_SESSION["prezime"] ?></a>
+                    <a class="nav-link" href="./changepass.php" id="za-poslodavce" style="color: #E2016A;"><i class="fas fa-user"></i> <?php echo $_SESSION["role"] ?>, <?php echo $_SESSION["ime"] ?> <?php echo $_SESSION["prezime"] ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="za-poslodavce" href="./php/logout.php" style="color: #E2016A;">Odjavite se</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="za-poslodavce" href="#" style="color: #053488;">Za korisnike</a>
+                    <a class="nav-link" id="za-poslodavce" href="./createoglas.php" style="color: #053488;">Napravi oglas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="notifications" href="#" style="color: #053488;"><i class="fas fa-bell fa-lg"></i></a>
@@ -47,93 +49,80 @@
             </ul>
         </div>
     </nav>
+
     <section class='top-page' style="background-image: url('./img/background.jpg'); background-size:cover;">
         <div class="container">
             <div class="row">
-                <h1>Najveći izbor oglasa za posao na jednom mestu<span>.</span></h1>
+                <h1>Vase prijave<span>.</span></h1>
             </div>
-            <div class="row">
-                <p>2723 oglasa za posao, 1652 kompanije</p>
-            </div>
-            <div class="row">
-                <form class="mt-5" action="" method="post">
-                    <div class="input-group mb-3 d-flex justify-content-center">
-                        <input type="text" class="form-control" name="criterium" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Button</button>
-                        </div>
-                    </div>
-                    </select>
-            </div>
-
-            </form>
-        </div>
-        </div>
-    </section>
-    <?php
-    if (isset($_REQUEST["success"])) {
-        switch ($_REQUEST["success"]) {
-            case 1:
-                echo '<div class="alert alert-success" role="alert">';
-                echo "Korisnik prijavljen";
-                echo '</div>';
-                break;
-            case 2:
-                echo '<div class="alert alert-success" role="alert">';
-                echo "User logging out";
-                echo '</div>';
-                break;
-            case 3:
-                echo '<div class="alert alert-success" role="alert">';
-                echo "Uspesno ste se prijavili za posao";
-                echo '</div>';
-                break;
-            case 4:
-                echo '<div class="alert alert-success" role="alert">';
-                echo "Uspesno ste dodali informacije";
-                echo '</div>';
-                break;
-            case 5:
-                echo '<div class="alert alert-success" role="alert">';
-                echo "Uspesno ste promenili sifru";
-                echo '</div>';
-                break;
-        }
-    }
-    if (isset($_REQUEST["error"])) {
-        switch ($_REQUEST["error"]) {
-            case 1:
-                echo '<div class="alert alert-danger" role="alert">';
-                echo "Doslo je do greske";
-                echo '</div>';
-                break;
-            case 2:
-                echo '<div class="alert alert-danger" role="alert">';
-                echo "Vec ste uneli podatke o sebi";
-                echo '</div>';
-                break;
-        }
-    }
-    ?>
-    <section id="main">
-        <div class="container">
-            <h1 class="nav-link" id="za-poslodavce" style="color: #053488;"><span style="color: #E2016A;">I</span>staknuti <span style="color: #E2016A;">P</span>oslodavci<span style="color: #E2016A;">.</span></h1>
             <?php
-            require_once './php/database.php';
-            $input = isset($_POST['criterium']) ? $_POST['criterium'] : "";
-            $query = "SELECT * FROM poslovi WHERE CONCAT(poslodavac, ime_posla, grad,oblast_rada, opis, email_poslodavca) LIKE '%$input%'";
-            $posao = getAllDataByQuery($query);
-            foreach ($posao as $poslovi) {
-                echo "<div class='card'>";
-                echo "<div class='card-header white-text'>" . $poslovi['poslodavac'] . "</div><div class='card-body'>";
-                echo "<h5 class='card-title'>" . $poslovi['ime_posla'] . ", " . $poslovi['grad'] . "</h5>";
-                echo "<p class='card-text'>" . $poslovi['opis'] . "</p>";
-                echo "<p class='card-text'>" . $poslovi['email_poslodavca'] . "</p>";
-                echo "<p class='card-text'>" . $poslovi['vreme_objave'] . "</p>";
-                echo "<a href='./php/notifyp.php?id=" . $poslovi['id'] . "' class='btn btn-outline-dark'>Prijavi se</a></div>
-        </div><br>";;
+            if (isset($_REQUEST["success"])) {
+                switch ($_REQUEST["success"]) {
+                    case 1:
+                        echo '<div class="alert alert-success" role="alert">';
+                        echo "Prijava uspesno otkazana";
+                        echo '</div>';
+                        break;
+                }
+            }
+            if (isset($_REQUEST["error"])) {
+                switch ($_REQUEST["error"]) {
+                    case 1:
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo "Doslo je do greske";
+                        echo '</div>';
+                        break;
+                }
             }
             ?>
+        </div>
+    </section>
+    <section id="main">
+        <div class="container">
+            <?php
+            require_once './php/database.php';
+
+            $match = false;
+
+            if (isset($_SESSION['email'])) {
+                $radnik = getAllData("radnici");
+                foreach ($radnik as $radnici) {
+                    if ($_SESSION['email'] == $radnici['email_radnika']) {
+                        $match = true;
+                        break;
+                    }
+                }
+            }
+            if ($match) {
+                if (isset($_SESSION['email'])) {
+                    $posao = getAllData("poslovi");
+                    $notifikacija = getAllData("notifikacije");
+                    $radnik = getAllData("radnici");
+                    foreach ($radnik as $radnici) {
+                        foreach ($notifikacija as $notifikacije) {
+                            if ($notifikacije['od_email'] == $radnici['email_radnika']) {
+                                foreach ($posao as $poslovi) {
+                                    if ($notifikacije['za_email'] == $poslovi['email_poslodavca'] && $notifikacije['od_email'] == $radnici['email_radnika']) {
+                                        echo "<div class='card'>";
+                                        echo "<div class='card-header white-text'>" . $poslovi['poslodavac'] . "</div><div class='card-body'>";
+                                        echo "<h4 class='card-title'>" . $poslovi['ime_posla'] . ", " . $poslovi['grad'] . "</h4><br>";
+                                        $opis = "- " . str_replace("<br />", "<br />- ", nl2br($poslovi['opis']));
+                                        echo "<p class='card-text'>" . $opis . "</p>";
+                                        echo "<p class='card-text'>" . $poslovi['email_poslodavca'] . "</p>";
+                                        echo "<p class='card-text'>" . $poslovi['vreme_objave'] . "</p>";
+                                        echo "<a href='./php/deleteprijava.php?id=" . $notifikacije['prijava_id'] . "' class='btn btn-outline-dark' style='margin-right: 1rem;'>Ponisti prijavu</a>";
+                                        echo "</div></div></br>";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                echo "<div class='row'><h1>Nemate postavljenih oglasa<span>!</span></h1></div>";
+            }
+            ?>
+
         </div>
     </section>
     <section id="footer" style="background-image: url('./img/background.jpg'); color:white;">

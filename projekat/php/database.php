@@ -35,5 +35,20 @@ function getData($table, $col, $value)
     return $data;
 }
 
+function getAllDataByQuery($query)
+{
+    global $mysqli;
+    $data = array();
+    $result = mysqli_query($mysqli, $query);
+    if (!$result) {
+        echo "Error fetching data: " . mysqli_error($mysqli);
+        return $data;
+    }
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+    return $data;
+}
+
 
 $con = $mysqli;

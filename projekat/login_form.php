@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body style="background-image: url('./img/background.jpg'); background-size:cover;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.php"><span style="color: #E2016A;">I</span><span style="color: #053488;">nfoStud</span><span style="color: #E2016A; font-size: 30px;">.</span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,13 +27,13 @@
                     <label for="exampleInputPassword1">Sifra</label>
                     <input type="password" name='password' class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Prijava</button>
+                <button type="submit" class="btn btn-dark">Prijava</button>
             </form>
             <form action="" method="post">
 
                 <label for="exampleFormControlInput1">Ukoliko nemate nalog</label>
                 <br>
-                <button type="submit" name='sign_up' class="btn btn-primary">Napravi nalog</button>
+                <button type="submit" name='sign_up' class="btn btn-dark">Napravi nalog</button>
             </form>
             <br>
             <?php

@@ -4,7 +4,7 @@ body {
 
 #custom-background {
     font-family: Arial, sans-serif;
-    background-image: url("./img/background.jpg") !important;
+    background-image: url("background.jpg") !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -148,7 +148,7 @@ body {
 .top-page {
     background-color: #053488;
     color: #fff;
-    padding-top: 70px;
+    padding-top: 160px;
     padding-bottom: 70px;
 }
 
@@ -228,4 +228,10 @@ body {
 
 .fa-bell {
     font-size: 10px;
+}
+
+.card-header {
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    color: white;
 }
